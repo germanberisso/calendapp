@@ -6,6 +6,7 @@ const cors = require('cors');
 const authRoutes = require('./routes/auth');
 const shiftRoutes = require('./routes/shifts');
 const taskRoutes = require('./routes/tasks');
+const patternRoutes = require('./routes/patterns');
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/shifts', shiftRoutes);
 app.use('/api/tasks', taskRoutes);
+app.use('/api/patterns', patternRoutes);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {

@@ -37,17 +37,34 @@ router.post('/', async (req, res) => {
 // Auto-fill shifts with pattern (Admin only)
 router.post('/auto-fill', async (req, res) => {
     try {
-        const { startDate, endDate, startingIndex = 0 } = req.body;
+        const { startDate, endDate, patternId } = req.body;
 
-        // Pattern: 2 Mañanas, 2 Noches, 4 Francos
-        const pattern = ['M', 'M', 'N', 'N', 'F', 'F', 'F', 'F'];
+        if (!patternId) {
+            return res.status(400).json({ message: 'Pattern ID is required' });
+        }
+
+        // Get pattern from database
+        const Pattern = require('../models/Pattern');
+        const patternDoc = await Pattern.findById(patternId);
+
+        if (!patternDoc) {
+            return res.status(404).json({ message: 'Pattern not found' });
+        }
+
+        // Build flat pattern array from pattern segments
+        const pattern = [];
+        patternDoc.pattern.forEach(segment => {
+            for (let i = 0; i < segment.days; i++) {
+                pattern.push(segment.type);
+            }
+        });
 
         const start = new Date(startDate);
         const end = new Date(endDate);
         const shifts = [];
 
         let currentDate = new Date(start);
-        let patternIndex = startingIndex % pattern.length;
+        let patternIndex = 0;
 
         while (currentDate <= end) {
             const shiftType = pattern[patternIndex];
@@ -74,7 +91,7 @@ router.post('/auto-fill', async (req, res) => {
         }
 
         res.json({
-            message: `${shifts.length} shifts created/updated`,
+            message: `${shifts.length} turnos creados/actualizados con el patrón "${patternDoc.name}"`,
             shifts
         });
     } catch (err) {

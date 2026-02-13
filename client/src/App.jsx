@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Dashboard from './pages/Dashboard';
 import AdminPanel from './pages/AdminPanel';
+import Patterns from './pages/Patterns';
 
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useAuth();
@@ -33,6 +34,11 @@ function App() {
                     <Route path="/admin" element={
                         <AdminRoute>
                             <AdminPanel />
+                        </AdminRoute>
+                    } />
+                    <Route path="/patterns" element={
+                        <AdminRoute>
+                            <Patterns />
                         </AdminRoute>
                     } />
                 </Routes>

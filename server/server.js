@@ -13,6 +13,7 @@ const app = express();
 const allowedOrigins = [
     'http://localhost:5173',
     'http://192.168.0.31:5173',
+    'https://calendapp-siderar.vercel.app',
     process.env.FRONTEND_URL || 'https://calendapp.vercel.app'
 ];
 

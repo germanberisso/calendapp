@@ -1,2 +1,9 @@
-build-command = "npm install"
-start-command = "npm start"
+services:
+  - type: web
+    name: calendapp-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production

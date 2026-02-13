@@ -10,7 +10,24 @@ const taskRoutes = require('./routes/tasks');
 const app = express();
 
 // Middleware
-app.use(cors());
+const allowedOrigins = [
+    'http://localhost:5173',
+    'http://192.168.0.31:5173',
+    process.env.FRONTEND_URL || 'https://calendapp.vercel.app'
+];
+
+app.use(cors({
+    origin: function (origin, callback) {
+        // Allow requests with no origin (mobile apps, Postman, etc.)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    credentials: true
+}));
 app.use(express.json());
 
 // Routes

@@ -12,3 +12,23 @@ body {
   margin: 0;
   min-height: 100vh;
 }
+
+/* Offline indicator */
+body.offline::before {
+  content: '⚠️ Sin conexión - Modo offline';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #f59e0b;
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-weight: 600;
+  z-index: 9999;
+  font-size: 14px;
+}
+
+body.offline {
+  padding-top: 40px;
+}

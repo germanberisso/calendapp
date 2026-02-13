@@ -37,6 +37,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/shifts', shiftRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/patterns', patternRoutes);
+console.log('✅ Patterns routes registered');
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI, {

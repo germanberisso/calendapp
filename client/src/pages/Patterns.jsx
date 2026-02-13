@@ -65,19 +65,25 @@ export default function Patterns() {
         }
 
         try {
+            console.log('User object:', user);
+            console.log('User ID:', user?._id);
+
             if (editingId) {
                 await axios.put(`/api/patterns/${editingId}`, formData);
             } else {
-                await axios.post('/api/patterns', {
+                const payload = {
                     ...formData,
-                    createdBy: user._id
-                });
+                    createdBy: user?._id || user?.id
+                };
+                console.log('Sending payload:', payload);
+                await axios.post('/api/patterns', payload);
             }
             setFormData({ name: '', pattern: [], isDefault: false });
             setShowForm(false);
             setEditingId(null);
             loadPatterns();
         } catch (err) {
+            console.error('Error details:', err.response?.data);
             alert(err.response?.data?.message || 'Error al guardar el patrón');
         }
     };

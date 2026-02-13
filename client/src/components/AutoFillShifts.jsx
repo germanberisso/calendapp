@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../config/axios';
 import { Wand2, Calendar, AlertCircle } from 'lucide-react';
 
 export default function AutoFillShifts({ onComplete }) {

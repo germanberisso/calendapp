@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, addMonths, subMonths, format, isSameMonth } from 'date-fns';
-import axios from 'axios';
+import axios from '../config/axios';
 import DayCell from './DayCell';
 import TaskModal from './TaskModal';
 import { useAuth } from '../context/AuthContext';

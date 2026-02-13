@@ -68,7 +68,10 @@ export default function Patterns() {
             if (editingId) {
                 await axios.put(`/api/patterns/${editingId}`, formData);
             } else {
-                await axios.post('/api/patterns', formData);
+                await axios.post('/api/patterns', {
+                    ...formData,
+                    createdBy: user._id
+                });
             }
             setFormData({ name: '', pattern: [], isDefault: false });
             setShowForm(false);

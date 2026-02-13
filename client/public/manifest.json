@@ -1,7 +1,7 @@
 {
     "name": "Calendapp - Gestión de Turnos",
     "short_name": "Calendapp",
-    "description": "Aplicación para gestión de turnos rotativos y tareas colaborativas",
+    "description": "Gestión de turnos rotativos - Sin login, edición libre",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
@@ -25,12 +25,5 @@
         "productivity",
         "business"
     ],
-    "screenshots": [
-        {
-            "src": "/screenshot-mobile.png",
-            "sizes": "540x720",
-            "type": "image/png",
-            "form_factor": "narrow"
-        }
-    ]
+    "screenshots": []
 }
